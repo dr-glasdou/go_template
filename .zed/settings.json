@@ -1,0 +1,38 @@
+{
+  "lsp": {
+    "golangci-lint": {
+      "initialization_options": {
+        "command": [
+          "golangci-lint",
+          "run",
+          "--output.json.path",
+          "stdout",
+          "--show-stats=false",
+          "--output.text.path="
+        ]
+      }
+    },
+    "gopls": {
+      "initialization_options": {
+        "buildFlags": [
+          "-tags=tools"
+        ]
+      }
+    }
+  },
+  "languages": {
+    "Go": {
+      "language_servers": [
+        "gopls",
+        "golangci-lint"
+      ]
+    }
+  },
+  "file_scan_exclusions": [
+    "**/.git",
+    "**/node_modules",
+    "**/dist",
+    "**/.air",
+    "**/bin",
+  ],
+}
