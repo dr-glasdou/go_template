@@ -1,0 +1,26 @@
+pre-commit:
+  parallel: true
+  commands:
+    lint:
+      glob: "*.go"
+      run: golangci-lint run --fix
+    format:
+      glob: "*.go"
+      run: gofumpt -w {staged_files}
+
+commit-msg:
+  commands:
+    conventional:
+      run: |
+        msg=$(cat {1})
+        pattern="^(feat|fix|chore|docs|refactor|test|style|ci)(\(.+\))?: .{1,100}"
+        if ! echo "$msg" | grep -qE "$pattern"; then
+          echo "❌ Commit message must follow conventional commits"
+          echo "   Example: feat: add todo persistence"
+          exit 1
+        fi
+
+pre-push:
+  commands:
+    tests:
+      run: go test ./...

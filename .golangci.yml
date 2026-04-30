@@ -1,0 +1,42 @@
+version: "2"
+
+linters:
+  enable:
+    - errcheck
+    - staticcheck
+    - govet
+    - revive
+    - cyclop
+    - funlen
+    - gosec
+    - wsl
+
+  settings:
+    cyclop:
+      max-complexity: 10
+    funlen:
+      lines: 60
+      statements: 40
+    wsl:
+      allow-assign-and-anything: false
+
+  exclusions:
+    rules:
+      - path: '.*\.test\.go'
+        linters:
+          - funlen
+          - gosec
+
+formatters:
+  enable:
+    - gci
+    - goimports
+
+  settings:
+    gci:
+      sections:
+        - standard
+        - default
+        - prefix(glasdou.wtf/gotemplate)
+    goimports:
+      local-prefixes: [glasdou.wtf/gotemplate]
