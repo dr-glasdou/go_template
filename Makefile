@@ -10,6 +10,7 @@ GOFMT=$(GOCMD) fmt
 # Binary name
 BINARY_NAME=gotemplate
 BINARY_PATH=./bin/$(BINARY_NAME)
+CMD_PATH=./cmd/gotemplate
 
 help: ## Show this help
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-15s\033[0m %s\n", $$1, $$2}'
@@ -41,7 +42,7 @@ test-coverage: ## Run tests with coverage
 	$(GOCMD) tool cover -html=coverage.out -o coverage.html
 
 build: ## Build the binary
-	$(GOBUILD) -o $(BINARY_PATH) -v .
+	$(GOBUILD) -o $(BINARY_PATH) -v $(CMD_PATH)
 
 run: build ## Build and run
 	$(BINARY_PATH)
