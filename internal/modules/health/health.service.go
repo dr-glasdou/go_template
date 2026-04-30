@@ -23,7 +23,7 @@ func (s *Service) Check() (*Response, error) {
 		status = "unhealthy"
 	}
 
-return &Response{
+	return &Response{
 		Status:    status,
 		Timestamp: time.Now(),
 	}, nil
