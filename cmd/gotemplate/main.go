@@ -5,10 +5,8 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/gin-gonic/gin"
-
 	"glasdou.wtf/gotemplate/configs"
-	"glasdou.wtf/gotemplate/internal/modules/health"
+	"glasdou.wtf/gotemplate/internal/app"
 )
 
 func main() {
@@ -17,16 +15,12 @@ func main() {
 		log.Fatalf("failed to load config: %v", err)
 	}
 
-	r := gin.Default()
-	v1 := r.Group("api/v1")
-
-	healthModule := health.NewModule()
-	healthModule.Register(v1)
+	app := app.New()
 
 	addr := fmt.Sprintf(":%d", config.Port)
 	log.Printf("starting server on %s", addr)
 
-	if err := r.Run(addr); err != nil {
+	if err := app.Run(addr); err != nil {
 		log.Fatalf("failed to start server: %v", err)
 	}
 }

@@ -5,15 +5,29 @@ tmp_dir = ".air"
 [build]
   args_bin = []
   bin = "./bin/gotemplate"
-  cmd = "go build -o ./bin/gotemplate ."
+  cmd = "go build -o ./bin/gotemplate ./cmd/api"
   delay = 1000
-  exclude_dir = ["assets", "tmp", "vendor", "testdata"]
+  exclude_dir = [
+    ".agents",
+    ".air",
+    ".zed",
+    "assets",
+    "tmp",
+    "vendor",
+    "testdata",
+    "bin",
+    "build",
+    "scripts",
+    "api",
+  ]
   exclude_file = []
-  exclude_unchanged = false
+  exclude_regex = ["_test\\.go$"]
+  exclude_unchanged = true
   follow_symlink = false
   full_bin = ""
   include_dir = []
   include_file = []
+  include_ext = ["go", "env"]
   kill_delay = "0s"
   log = "build.log"
   poll = false
